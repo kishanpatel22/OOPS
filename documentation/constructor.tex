@@ -1,0 +1,133 @@
+\documentclass[oops.tex]{subfiles}
+\begin{document}
+\section{Constructor}
+
+A \emph{constructor} is used to initialize an object of as class. It special
+member function of the class that gets called automatically called when the
+object of the class is instanciated. 
+\begin{itemize}
+    \item Constructor is special member function having same name as that of class.
+    \item Constructor do not have any return type.
+    \item Constructor is automatically called we the object is created(allocated memory).
+    \item If we do not specify constructor for a class, C++ complier will
+          automatically generate a default constructor for the class.
+\end{itemize}
+
+\begin{figure}[h]
+    \begin{center}
+        \caption{Constructors in C++}
+        \includegraphics[width=9cm]{constructor.png}
+    \end{center}
+\end{figure}
+
+\begin{enumerate}
+    \item {\bf Default Constructor} : The constructor with with no arguments
+          or parameters.
+
+          \lstinputlisting[% Default Constructor 
+          style=codeStyleC++, caption = Default constructor in class]
+          {listings/constructor/defaultConstructor.cpp}
+          
+          \texttt{Note} : Even if we don't specify constructor explicitly, the
+          C++ complier generates a default constructor implicitly.
+
+    \item {\bf Parameterized Constructor} : It is possible to pass arguments
+          to the constructor since it is just like a normal function. We
+          can use this fact to initialize objects with the arguments passed to
+          the constructor.
+
+          \lstinputlisting[% Parameterized Constructor
+          style=codeStyleC++, caption = Parameterized constructor in class]
+          {listings/constructor/parameterizedConstructor.cpp}
+      
+          \texttt{Note} : When objects are created by parameterized constructor
+          they are initialized by arguments that are passed to constructor.
+          Constructors can be called explicitly or implicitly.
+        
+          \lstinputlisting[% Parameterized Constructor objects 
+          style=codeStyleC++, caption = Calling parameterized constructor]
+          {listings/constructor/parameterizedConstructorObjects.cpp}
+    
+    \item {\bf Copy Constructor} : A copy constructor is a member function which 
+          initializes newly created object using another existing object of the 
+          same class.
+
+          \lstinputlisting[% Copy Constructor 
+          style=codeStyleC++, caption = Copy constructor in Class]
+          {listings/constructor/copyConstructor.cpp}
+    
+          \texttt{Note} : The C++ complier implicitly generates a copy
+          constructor for a class if not specified explicitly. For the above 
+          code the copy constructor gets called as shown below.
+
+          \lstinputlisting[% Copy Constructor Objects
+          style=codeStyleC++, caption = Copy constructor call for objects]
+          {listings/constructor/copyConstructorObjects.cpp}
+        
+          {\bf What is the use of Copy Constructor ?} - is copying a big deal ?\\
+          Yes copying data is an important task, more importantly rather than
+          focusing on the how to copy, one must focus on what is being copied. 
+          The obvious question is that C++ complier automatically generates a
+          copy constructor if not specified then, why we need to worry about
+          the copy constructor. Let's consider an example. 
+        
+          \lstinputlisting[% copy constructor doing shallow copy 
+          style=codeStyleC++, caption = Shallow Copying]
+          {listings/constructor/shallowCopy.cpp}
+            
+          {\bf Shallow and Deep Copying !}  \\
+          Problem in the above code is it does something called as
+          \emph{Shallow Copy}. That is basically bindly copying the bitwise
+          values and not knowing what value actually the data holds.\\
+           
+          \lstinputlisting[% Problem with shallow copy
+          style=codeStyleC++, caption = Problem of shallow copy]
+          {listings/constructor/problemShallowCopy.cpp}
+            
+          In above code, array is dynamically allocated and base address 
+          of array will be copied to another object created as copy
+          constructor is invoked. Two different objects share the same 
+          resource(pointing to same memory location). We explicitly need 
+          to specify how to copy. 
+                    
+          \begin{figure}[h]
+                \begin{center}
+                    \caption{Shallow Copying} 
+                    \includegraphics[width=10cm]{shallow_copy.png}
+                \end{center}
+          \end{figure}
+            
+          \emph{Deep Copy} is copying dynamically allocated resources instead 
+          of just doing bitwise copying. We need to modify copy constructor 
+          inorder to copy values of the objects correctly. 
+ 
+          \begin{figure}[h]
+                \begin{center}
+                    \caption{Deep Copying} 
+                    \includegraphics[width=9cm]{deep_copy.png}
+                \end{center}
+          \end{figure}
+
+          \lstinputlisting[% Deep coping copy constructor
+          style=codeStyleC++, caption = Deep copy]
+          {listings/constructor/modifiedCopyConstructor.cpp}
+
+          {\bf Copy constructor function accessing the private data memeber of class ? }\\
+          \texttt{Access modifiers} operate on class level and not object level. 
+          Thus any class function can access private data members of the object 
+          even if it is of another object instance.
+          
+          {\bf Assignement Operator and Copy Constructor ? }
+          \begin{itemize}
+            \item \texttt{Assignement Operator} is called when already initialized 
+                  object assigned a new value of another existing object. 
+            \item \texttt{Copy Constructor} is called for initialization of 
+                  new object that is created from an existing object.
+          \end{itemize}
+
+\end{enumerate}
+
+
+
+\end{document}
+

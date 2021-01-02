@@ -1,0 +1,83 @@
+\documentclass[oops.tex]{subfiles}
+\begin{document}
+\section{Static keyword in C++}
+
+We know that static variables are have \emph{property of preserving their value 
+even after they are out of their scope}. A few properties of static keyword in
+C language include - 
+\begin{enumerate}
+    \item Static variables remains in the memory while the program is running
+          unlike the auto variables. The memory allocated to static variables
+          is in the data segment.
+    \item Static variables like global variables are initialized as 0 if not
+          initialized explicitly.
+    \item Static function access is restricted to the file where they are declared 
+\end{enumerate}
+
+Now lets discuss the static keyword used with class. We can declare static
+data member as well as static member function in the class. Object of the class
+can also be declared as static.
+
+\begin{enumerate}
+    \item {\bf Static variables in class} - They are initialized only once
+          and they are allocated space in separate static storage. Thus we can
+          say that static variables in class \texttt{are shared by the objects}.
+          There \texttt{cannot be multiple copies of the static variables}
+          \lstinputlisting[% Static variable in class 
+          style=codeStyleC++, caption=Static variable in Class]
+          {listings/staticKeyword/staticVariable.cpp}
+
+          Notice that there is need of \texttt{explicitly defination} of static 
+          variable outside class using the class name and the scope resolution
+          operator.\\
+          Now let us create objects and manipulate the static variable.
+          \lstinputlisting[% Objects having static variables  
+          style=codeStyleC++, caption=Objects with Static variable]
+          {listings/staticKeyword/objectsStaticVariable.cpp}
+
+    \item {\bf Static functions in a class} - Similar to static variables the
+          static member functions are independent of the objects created. A
+          static member function can be called even if no objects are created
+          using the class name and the scope resolution operator.
+          \lstinputlisting[% Static functions in class 
+          style=codeStyleC++, caption=Static function in class]
+          {listings/staticKeyword/staticFunction.cpp}
+
+          \begin{itemize}
+            \item   \texttt{Static member function can only access static data 
+                    member or other static member functions of the class}. 
+            \item   \texttt{Non static member functions in class 
+                    can manipulate static data}.
+          \end{itemize}
+          \lstinputlisting[% Objects using static functions
+          style=codeStyleC++, caption=Objects using static function] 
+          {listings/staticKeyword/objectsStaticFunction.cpp}
+    
+    \item {\bf Class objects as static} - Objects are just like variables and
+          thus can be declared as static and have the scope till the lifetime
+          of the program. Lets create a class and make objects as static
+          \lstinputlisting[% Class for instanciatiating objects
+          style=codeStyleC++, caption=Simple class for instanciating static object] 
+          {listings/staticKeyword/simpleClass.cpp}
+
+          The following code creates static objects and given below.
+          \lstinputlisting[% Static objects of a class
+          style=codeStyleC++, caption=Static object of above class] 
+          {listings/staticKeyword/staticObject.cpp}
+          The output of the above code will be as given below - \\
+          \texttt{Inside constructor}                           \\
+          \texttt{End of main}                                  \\
+          \texttt{Inside destructor}                            \\
+
+\end{enumerate}
+
+{\bf Why Static Variables inside Class ?}\\
+In Langauges like \texttt{Java}, \emph{static} keyword is used for memory
+management, example our code has many String objects created this static
+varaible can keep count of many objects are allocated in memory at any
+particular time in code. Also static keyword give lifetime scope for that
+variable which makes it accessable whenever needed in code.
+
+
+\end{document}
+

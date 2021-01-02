@@ -1,0 +1,209 @@
+\documentclass[oops.tex]{subfiles}
+\begin{document}
+\section{Inheritance}
+
+Its is capability of the class to \emph{derive properties and characteristics} 
+from another(parent) class. \texttt{Sub Class / Derieved Class} is a class which 
+inherits properties from Supper Class / Parent Class. \texttt{Supper Class /
+Parent Class} is a class whose properties are begin inherited.\\
+
+{\bf Why Inheritance ?}\\
+It actually represents \texttt{real world phenomenon of inheritance in humans}.
+Example you have some (but not all) characteristics(height, weight, eyes, ears, 
+behavioural instinct) from your parents, and similar they have got those
+characteristics from the grandparents and so on. Similarly in OOPS inheritance
+helps in \texttt{deriving some (not necessarly all) characteristics} from the
+parent / base class. The main advantage of this is \texttt{Code Reuseability}.
+
+\lstinputlisting[% Without Inheritance 
+style=codeStyleC++, caption = Without Inheritance Design]
+{listings/inheritance/Noinheritance.cpp}
+
+\begin{figure}[h]
+    \begin{center}
+        \caption{Without using Inheritance}
+        \includegraphics[width=8cm]{without_inheritance.png}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \caption{With using Inheritance}
+        \includegraphics[width=8cm]{with_inheritance.png}
+    \end{center}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{l | l}
+        \texttt{Inheritance}            & \texttt{Relation}\\
+        \hline
+        \emph{Single Inheritance}       & deriving a class from single base class.\\
+        \emph{Multiple Inheritance}     & deriving a class from multiple base class.\\
+        \emph{Multilevel Inheritance}   & deriving a class from another derived class.\\
+        \emph{Hierarchical Inheritance} & more than one derived class exits from a single base class.\\
+        \emph{Hybrid Inheritance}       & combination of the above mentioned inheritance.\\
+    \end{tabular}
+\end{center}
+
+{\bf Single Inheritance Example}\\
+The code on the previous page is great example of single inheritance since
+Iphone needs all basic functionality of phone plus provides some of its own
+functionalities.
+
+{\bf Multiple Inheritance Example}\\
+Best example is of humans, any child inherits properties of it's mother and
+father both which indicates multiple inheritance.
+
+{\bf Multilevel Inheritance Example}\\
+It's is extension for the single inheritance so, it would be like Iphone 7s
+being inherited from Iphone 5s with additional functionality and so on.
+
+{\bf Herarchical Inheritance Example}\\
+Personal Example - In doing bittorrent project I had to write the Tracker
+protocol, basically the resquest and response parameters for HTTP and UDP 
+trackers are same, thus we can inherit from tracker base class the HTTP and UDP
+tracker class just changing the underlying transport layer protocol for
+communication that is application layer protocol remains the same.
+
+{\bf Hybrid Inheritance Example}\\
+It's bit uncommon to see, will discuss about it in diamond problem.
+
+
+{\bf Objects and Inheritance}\\
+
+\texttt{Order of Constructor and Destructor Call}\\
+Consider the case of single inheritance as given below the call order of
+constructor will the parent class be called first and then the constructor for 
+derived class will be called. In case of destructor the derived class is called
+first and then the destructor of the parent class is called.
+
+\lstinputlisting[% Call Order
+style=codeStyleC++, caption = Call Order of Constructor and Destructor]
+{listings/inheritance/callOrder.cpp}
+
+\begin{figure}[h]
+    \begin{center}
+        \caption{Call Oder in Inheritance}
+        \includegraphics[width=9.5cm]{call_order.png}
+    \end{center}
+\end{figure}
+
+\texttt{ What things extactly get inherited in derieved class ?}
+\begin{itemize}
+    \item Data members(public and protected) which are accessible from base class.
+    \item Member functions(public and protected) which are accessible from base class.
+    \item The base class’s constructors and destructor.
+    \item The base class’s friends.\\
+\end{itemize}
+
+\texttt{ Object Slicing }\\
+
+In C++ you can assign derived class object to base class object or you can even
+reference derieved class using bases class pointers, and due to this there is 
+slicing of the derivied class objects to form the base class. It is very simple
+when you initialize base class object using derived class, slice off all
+other data elements and copy only base class members in derived class.\\
+
+\lstinputlisting[% Object Slicing
+style=codeStyleC++, caption = Object Slicing]
+{listings/inheritance/objectSlicing.cpp}
+
+{\bf How can base class be initialized or reference to derieved class ?}\\ 
+The simple answer is because its a \texttt{Base Class}, and C++ also
+Base-to-Derieved class converstion and not the other way round. Basically when
+you try to initialize a object by another object you try and make sure
+whether its having memory allocated for object data members. It so happens
+in the case of base class that it can be referenced or assigned by the derieved
+class (derieved + base) and if you would think other way, you would see that
+assignment of the derieved with base doesn't contain valid memory for the data
+members.\\
+
+\texttt{ Overriding Methods in Base Class }\\
+
+\texttt{Function Overriding} is feature which allows use to delcare member
+function in derieved class which is already present in the base class. This can
+be very usefully in case if you can to change some functionalities of the base
+class by creating newer version and overriding the older version of the
+function.\\
+
+\lstinputlisting[% Method Overriding
+style=codeStyleC++, caption = Method Overriding]
+{listings/inheritance/methodOverriding.cpp}
+
+Function overriding is very different from function overloading,
+since \texttt{function overriding occurs in case of inheritance} where derieved class 
+is trying to create shadow over the base class functions. In case of function
+overriding the \texttt{function signatures must exactly be same}. \texttt{During 
+Class inheritance function overloading doesn't occur, function having same
+name but different parameters will be forcefully overriden in base class.}
+Even if both are complie time activities one must always keep in mind that
+
+\begin{center}
+    Function Overriding $!=$ Function Overloading\\
+    There is no \texttt{overload resolution} between Base and Derived class.\\
+    \texttt{Function Overloading} occurs withing a class member functions.\\
+    \texttt{Function Overriding} occurs during inheritance of member functions.\\
+\end{center}
+
+Now let's see ambiguity case, like what happens when a object is derived from 
+two base class both having the same function name. Which function will the 
+derieved class call ?
+
+\lstinputlisting[% Multiple Inheritance Ambiguity
+style=codeStyleC++, caption = Multiple Inheritance Ambiguity]
+{listings/inheritance/multipleInheritance.cpp}
+
+When you complie the above code there is no complie time errors, however it
+will result in runtime errors since there are two defination of function hello
+available in the baz class. This situation is ambigous since there are more
+than defination available and derived object is confused which function to 
+link with. Inorder to resolve such ambiguities we make use of scope resolution
+operators. Each base class function is wrapped in the namespace of itself and
+since derieved class gets the all the functionality of public base class we 
+can resolve the ambiguity using scope resolution operators.\\
+
+\lstinputlisting[% Resolve Ambiguity
+style=codeStyleC++, caption = Resolve Multiple Inheritance Ambiguity]
+{listings/inheritance/resolve.cpp}
+
+\newpage{}
+
+{\bf Diamond Problem (Virtual Inheritance)}
+
+Also know the Deadly Diamond of Death, its an problem leading to ambiguity when
+class inheritance takes the following structure. The you can easily understand
+ambiguity in the order in which constructor calls takes place if we instantiate
+the object of class D.
+
+\begin{figure}[h]
+    \begin{center}
+        \caption{Diamod Problem}
+        \includegraphics[width=7cm]{diamond.png}
+    \end{center}
+\end{figure}
+
+
+\lstinputlisting[% Diamond Problem 
+style=codeStyleC++, caption = Resolve Multiple Inheritance Ambiguity]
+{listings/inheritance/diamond.cpp}
+
+Still after using the scope resolution operators its failing to bind to the
+paritcular function, since its different kind of ambiguity as seen in previous 
+case. Here in problem we have actaully two base class instance of parent in class
+baz (base class instance from foo and from baz). \\
+
+So inorder to resolve this paritcular ambiguity we make use of \texttt{Virtual
+Inheritance} which helps in creating exactly one object instance of parent class 
+every time the derived class object is instanciated.\\
+
+\lstinputlisting[% Virtual Inheritance
+style=codeStyleC++, caption = Virtual Inheritance]
+{listings/inheritance/virtualInheritance.cpp}
+
+
+
+
+
+
+\end{document}
+

@@ -1,0 +1,101 @@
+\documentclass[oops.tex]{subfiles}
+\begin{document}
+\section{Introduction}
+
+{\bf Programming paradigms} - it is nothing but the \emph{style} of programming 
+a certain problem. There are different categories in which programming languages
+can be classified. There are four types of languages according to Programming
+paradigms i.e. Imperative Languges (C), Object Oriented Programming Languges (C++,
+Java, Python), Functional Programming Languges (Lisp) and Logical Programming
+Languges (Prolog).\\
+
+\emph{Object Oriented Programming} is type of programming paradigm in which as the name 
+suggests objects are used for programming. The aim of object oriented programming 
+(OOP) is to implement real life application entites though programming. The OOP binds 
+the data and functions operations on the data together so that it forms a single
+entity and no other function in the code can access that data.\\
+
+{\bf Advantages of OOPS}\\
+\emph{Represent Real World Objects/Entities}, \emph{Modular Code Structure},
+\emph{Code Reuseability}\\
+
+{\bf Disadvantages of OOPS}\\
+\emph{Larger Program Size}, \emph{Slower than Procedural Languges}
+\emph{Not suitable for all types of the problems}\\
+
+\texttt{Class} : It is a user-defined prototype, which holds its own data members 
+and member functions for which objects can be created. Data members are the
+data variables and member functions are the methods used to manipulate these variables. 
+Together these data members and member functions define the properties and behaviour 
+of the objects in a class. Always remember class is like a \emph{blueprint} for
+object.\\
+
+\texttt{Objects} : Its nothing but an instance of the Class. When we delcare a
+class no memory is allocated, however when we declare a object of the class or
+in other words we create an instance of the class memory is allocated to that
+object. An object is an entity which has some behaviours and charateristics.\\
+
+\texttt{Encapsulation} : Encapsulation is defined as wrapping up of data and 
+information under a single unit. Encapsulation also leads to data abstraction 
+or data hiding. A real life example would be company having different sections 
+like accounts section, sales, sections, etc. All the data for a single section is
+binded or encapsulated together.\\
+
+\texttt{Abstraction} : Abstraction means displaying only essential information 
+and hiding the details. It is an important aspect of object oriented
+programming. A real life example would be a person driving a car, since the person 
+just knows about the pressing the accelerator or brake would do a job of
+controlling speed but how the speed is exactly being controlled he never knows.
+Abstraction can be achieved as follows : - 
+\begin{enumerate}
+    \item Abstraction by Header Files : Example in pow function in math.h library. 
+          Also the data structures declared in c++ STL library.
+    \item Abstraction by Class : Since class can decide which data member will be
+          visible to the outside world since it can group the data members and 
+          the member functions together.\\
+\end{enumerate}
+
+\texttt{Access Modifiers} : They are used to implement the most important thing
+which is data hiding or abstraction. There are three types of access modifiers
+in C++.
+\begin{enumerate}
+    \item \emph{Public} - The public members of a class can be accessed 
+          from anywhere in the program using the direct member access operator (.) 
+          with the object of that class.
+    \item \emph{Private} - The class members declared as private can be accessed 
+          only by the functions inside the class and are not allowed to be accessed 
+          directly by any object.
+    \item \emph{Protected} - Similar to private class but only difference is
+          that they can access by any subclass or derived class function.\\
+\end{enumerate}
+
+\texttt{Inheritance} : It is a feature of Object Oriented Programming which 
+has capability of a class to derive properties and characteristics from another 
+class. There are five types of inheritance as follow - 
+\begin{enumerate}
+    \item \emph{Single Inheritance} - deriving a class from single base class.
+    \item \emph{Multiple Inheritance} - deriving a class from multiple base class.
+    \item \emph{Multilevel Inheritance} - deriving a class from another derived class.
+    \item \emph{Hierarchical Inheritance} - more than one derived class exits
+                from a single base class.
+    \item \emph{Hybrid Inheritance} - Its a combination of the above mentioned
+                inheritance.\\
+\end{enumerate}
+
+\texttt{Polymorphism} : The words means to have many froms. Real life example of
+polymorphism, is that person at the same time can have different characteristic 
+like he can be a student, son, grandchild, etc. There are two types of
+polymorphism as follows - 
+\begin{enumerate}
+    \item \emph{Compile Time Polymorphism} : it is also called as early or
+          static binding and futher can be classified as - 
+          \begin{itemize}
+              \item Function Overloading - same function different signatures.
+              \item Operator Overloading - operators(+,-,*,/) can be used on objects.
+          \end{itemize}
+    \item \emph{Run Time Polymorphism} : it is late or dynamic binding and
+          comes by implementation of virtual functions.
+\end{enumerate}
+
+\end{document}
+
